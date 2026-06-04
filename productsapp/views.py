@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from productsapp.models import Product
+from django.core.paginator import Paginator
 
 # Create your views here.
 def index(request):
@@ -12,4 +13,8 @@ def productDetail(request,id):
 
 def products(request):
     all_products=Product.objects.all()
+    #กำหนดหมายเลขหน้า
+    page = request.GET.get("page")
+    paginator=Paginator(all_products,9)
+    all_products=paginator.get_page(page)
     return render(request,"product.html",{"all_products":all_products})
