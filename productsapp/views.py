@@ -1,6 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from productsapp.models import Product
 
 # Create your views here.
 def index(request):
-    return HttpResponse("<h1>คลังสินค้า</h1>")
+    products=Product.objects.filter(isTrending=True)
+    return render(request,"index.html",{"products":products})
+
+def productDetail(request,id):
+    product=Product.objects.get(pk=id)
+    return render(request,"detail.html",{"product":product})
+
+def products(request):
+    all_products=Product.objects.all()
+    return render(request,"product.html",{"all_products":all_products})
