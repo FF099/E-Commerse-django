@@ -12,7 +12,7 @@ def productDetail(request,id):
     return render(request,"detail.html",{"product":product})
 
 def products(request):
-    all_products=Product.objects.all()
+    all_products=Product.objects.all().order_by("name")
     #กำหนดหมายเลขหน้า
     page = request.GET.get("page")
     paginator=Paginator(all_products,9)
