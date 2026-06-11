@@ -17,5 +17,5 @@ class OrderDetail(models.Model):
     created=models.DateTimeField(auto_now_add=True)
     order=models.ForeignKey(Order,on_delete=models.CASCADE)
 
-#    def sub_total(self):
-#        return self.price * self.quantity
+    def sub_total(self):
+        return self.price * self.quantity

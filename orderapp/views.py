@@ -5,6 +5,7 @@ from orderapp.models import Order,OrderDetail
 from productsapp.models import Product
 from cartapp.views import create_cartId
 
+#orderHistory.html
 @login_required(login_url="/login")
 def orderHistory(request):
     orders=Order.objects.filter(customer=request.user)
